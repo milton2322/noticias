@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>
+      News Fresh
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="dark">
+  <!--[noticias] con esto el @input del ts recibe la noticia -->
+  <!-- "noticias" es el que se le esta enviando desde el ngOnit del ts -->
+  <app-noticias [noticias]="noticias"></app-noticias>  
+  
+</ion-content>
