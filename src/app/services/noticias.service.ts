@@ -22,7 +22,7 @@ export class NoticiasService {
   private ejecutarQuery<T>(query: string){
 
     query = apiUrl + query;
-    console.log("pruebas",query);
+    console.log("prue",query);
     
     return this.http.get<T>( query, {headers}); 
 
