@@ -24,7 +24,7 @@ export class NoticiasService {
     query = apiUrl + query;
     console.log(query);
     
-    return this.http.get<T>( query, {headers});
+    return this.http.get<T>( query, {headers}); 
 
   }
 
