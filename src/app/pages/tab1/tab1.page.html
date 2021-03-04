@@ -9,6 +9,13 @@
 <ion-content [fullscreen]="true" color="dark">
   <!--[noticias] con esto el @input del ts recibe la noticia -->
   <!-- "noticias" es el que se le esta enviando desde el ngOnit del ts -->
-  <app-noticias [noticias]="noticias"></app-noticias>  
+  <app-noticias [noticias]="noticias"></app-noticias> 
+  
+  <ion-infinite-scroll threshold="150px"  
+                       (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" 
+                                 loadingText="Cargando data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
   
 </ion-content>

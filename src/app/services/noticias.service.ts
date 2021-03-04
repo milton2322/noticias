@@ -14,6 +14,8 @@ const headers = new HttpHeaders({
 })
 export class NoticiasService {
 
+  headLinesPage = 0;
+
   constructor(private http: HttpClient) { }
 
 /* <T> esto lo que quiere decir que la funcion va a recibir un tipo puede ser 
@@ -29,8 +31,10 @@ export class NoticiasService {
   }
 
   getTopHeadLines(){
+    this.headLinesPage ++;
+
     /* return this.http.get<RespuestaTopHeadlines>('http://newsapi.org/v2/top-headlines?country=us&apiKey=b588823530b14d3b96da7ea1b2e06a34'); */
-    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=us`);
+    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=us&page=${this.headLinesPage}`);
   }
 
   getTopHeadLinesCategoria( categoria: string){

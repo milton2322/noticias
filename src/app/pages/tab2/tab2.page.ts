@@ -13,23 +13,40 @@ export class Tab2Page implements OnInit {
   @ViewChild(IonSegment, {static: true}) segment: IonSegment;
 
   categorias = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
+  /* es una variable que va a tener las caracteristicas de la interface Article y que va 
+  hacer de tipo array inicializado vacio */
+  noticias: Article[]= [];
   constructor(private noticiasService: NoticiasService) {
 
   }
 
   ngOnInit(){
-    console.log(this.segment.value);
-    
+        
     this.segment.value = this.categorias[0];
-    this.noticiasService.getTopHeadLinesCategoria( this.categorias[0])
+    console.log("categoria",this.segment.value);
+    this.cargarNoticia(this.segment.value);
+    /* this.noticiasService.getTopHeadLinesCategoria( this.categorias[0]) me trae la primera categoria
           .subscribe(resp => {
-            console.log(resp);
+            console.log("linea 30",resp);
+            this.noticias.push( ...resp.articles);
             
-          });
+          }); */
   }
 
-  segmentChange(){
+  cambioCategoria( event){
+    //esto resetea la noticia para que no se concatene con las otras categorias al seleccionarla
+    this.noticias = [];
     
+    this.cargarNoticia(event.detail.value);
+  }
+
+  cargarNoticia( categoria: string ){
+    this.noticiasService.getTopHeadLinesCategoria( categoria)//aqui recibe la categoria que viene del argumento del html
+          .subscribe(resp => {
+            console.log("linea 30",resp);
+            this.noticias.push( ...resp.articles);
+            
+          });
   }
   
 }

@@ -7,7 +7,8 @@
   
 <ion-segment 
              scrollable mode="md" 
-             color="primary">
+             color="primary"
+             (ionChange)="cambioCategoria($event)">
   <ion-segment-button mode="md"
                       *ngFor="let categoria of categorias"
                       [value]="categoria">
@@ -18,4 +19,6 @@
 </ion-header>
 
 <ion-content color="dark">
+
+  <app-noticias [noticias]="noticias"></app-noticias>
 </ion-content>
