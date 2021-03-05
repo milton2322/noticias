@@ -23,7 +23,7 @@ export class Tab2Page implements OnInit {
   ngOnInit(){
         
     this.segment.value = this.categorias[0];
-    console.log("categoria",this.segment.value);
+    
     this.cargarNoticia(this.segment.value);
     /* this.noticiasService.getTopHeadLinesCategoria( this.categorias[0]) me trae la primera categoria
           .subscribe(resp => {
@@ -40,13 +40,22 @@ export class Tab2Page implements OnInit {
     this.cargarNoticia(event.detail.value);
   }
 
-  cargarNoticia( categoria: string ){
+  cargarNoticia( categoria: string, event? ){
     this.noticiasService.getTopHeadLinesCategoria( categoria)//aqui recibe la categoria que viene del argumento del html
           .subscribe(resp => {
-            console.log("linea 30",resp);
+            /* console.log("linea 30",resp); */
             this.noticias.push( ...resp.articles);
+            /*si existe el evento lo que hace es cancelar el infinite scroll*/
+            if( event ){
+              event.target.complete();
+            }
             
           });
+  }
+
+  loadData( event ){
+    /*aqui lo que se hace es que carga la categoria donde se esta ubicado por medio del this.segment*/
+    this.cargarNoticia(this.segment.value, event);
   }
   
 }

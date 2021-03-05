@@ -3,8 +3,16 @@
     <ion-card-subtitle class="noticia-source">
       <span >{{indice + 1}}.</span>
       <span>{{noticia.source.name}}</span>
+
+      <div class="noticia-more">
+        <ion-button fill=""
+                    (click)="lanzaMenu()">
+            <ion-icon slot="icon-only" name="alert"></ion-icon>
+
+        </ion-button>
+      </div>
     </ion-card-subtitle>
-    <ion-card-title class="noticia-title">{{noticia.title}}</ion-card-title>
+    <ion-card-title class="noticia-title" (click)= abrirNoticia()>{{noticia.title}}</ion-card-title>
   </ion-card-header>
 
 <ion-img *ngIf="noticia.urlToImage" 

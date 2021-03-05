@@ -18,7 +18,7 @@ export class Tab1Page {
 
   loadData( event){
 
-    console.log("loadData",event);
+    /* console.log("loadData",event); */
     
     this.cargarNoticias(event);
   }
